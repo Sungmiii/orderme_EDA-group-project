@@ -7,16 +7,36 @@ body{
   background-size: cover;
 }
 
+/* grid style  */
 .gridcontainer{
   display: grid;
   grid-template-columns: repeat(12, [col] 1fr);
   grid-template-rows: auto;
   justify-content: center;
+  align-items: center;
+}
+
+header {
+  grid-column: col 1 / span 12;
+  grid-row: 1;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3em;
 }
 
 .maingame{
- grid-column: col 4/ span 6;
+ grid-column: col 1 /span 12;
+ align-self: center;
+ grid-row: 2;
 }
+
+footer {
+  grid-row: 3;
+  grid-area: col 1 /span 12;
+  text-align: center;
+}
+
+/* game area */
 
 .draggableBox{
   position: relative;
@@ -33,10 +53,7 @@ body{
   width: 100%;
 }
 
-.logo{
-  height: 200px;
-  width: 200px;
-}
+
 
 .letterBlock{
   width:100px;
@@ -45,4 +62,10 @@ body{
 
 .menubtn,.resetbtn {
   width: 250px;
+}
+
+
+/* header */
+.logo{
+ height: 300px;
 }

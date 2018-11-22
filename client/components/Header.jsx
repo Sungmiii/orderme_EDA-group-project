@@ -6,15 +6,16 @@ import ResetBtn from './ResetBtn'
 
 export default function Header() {
     return (
-        <div>
+        <header>
             <div className="menubtn">
                 <MenuBtn />
             </div>
-
+            <div className="logogog">
             <OrdermeLogo />
+            </div>
             <div className="resetbtn">
                 <ResetBtn />
             </div>
-        </div>
+        </header>
     )
 }
