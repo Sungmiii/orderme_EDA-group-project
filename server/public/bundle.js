@@ -956,6 +956,10 @@ var _reducers = __webpack_require__(76);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
+var _reduxThunk = __webpack_require__(77);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
 var _App = __webpack_require__(27);
 
 var _App2 = _interopRequireDefault(_App);
@@ -963,7 +967,7 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
-var store = (0, _redux.createStore)(_reducers2.default, composeEnhancers((0, _redux.applyMiddleware)(thunkMiddleware)));
+var store = (0, _redux.createStore)(_reducers2.default, composeEnhancers((0, _redux.applyMiddleware)(_reduxThunk2.default)));
 
 store.subscribe(function () {
   return console.log('store is now', store.getState());
@@ -18302,10 +18306,6 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _superagent = __webpack_require__(35);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
 var _GameSpace = __webpack_require__(28);
 
 var _GameSpace2 = _interopRequireDefault(_GameSpace);
@@ -18352,7 +18352,7 @@ var App = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { style: { position: "absolute" } },
+        { style: { position: "absolute" }, className: 'gridcontainer' },
         _react2.default.createElement(
           'h1',
           null,
@@ -18428,7 +18428,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function GameSpace() {
     return _react2.default.createElement(
         'div',
-        null,
+        { className: 'maingame' },
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_Footer2.default, null)
     );
@@ -23850,6 +23850,33 @@ var _redux = __webpack_require__(45);
 var reducers = (0, _redux.combineReducers)({});
 
 exports.default = reducers;
+
+/***/ }),
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+/* harmony default export */ __webpack_exports__["default"] = (thunk);
 
 /***/ })
 /******/ ]);
