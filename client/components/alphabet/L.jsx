@@ -1,7 +1,7 @@
 import React from 'react'
 
 const L = props => (
-    <svg viewBox="0 0 102 102" {...props}>
+    <svg className={props.class} viewBox="0 0 102 102" {...props}>
         <title>{'l'}</title>
         <g data-name="\uB808\uC774\uC5B4 2">
             <g data-name="\uB808\uC774\uC5B4 1">

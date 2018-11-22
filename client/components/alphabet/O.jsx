@@ -1,7 +1,7 @@
 import React from 'react'
 
 const O = props => (
-    <svg viewBox="0 0 102 102" {...props}>
+    <svg className={props.class} viewBox="0 0 102 102" {...props}>
         <defs>
             <style>{'.prefix__cls-2{fill:#fff}'}</style>
         </defs>
