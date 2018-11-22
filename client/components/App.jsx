@@ -1,15 +1,40 @@
 import React from 'react'
+import request from 'superagent'
+
 import GameSpace from './GameSpace'
+import { getLevles } from './api_client/orderme_api'
 
-const App = () => {
-  return (
-    <div className="mainapp" style={{ position: "absolute" }}>
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      level: []
+    }
+  }
 
 
 
-      <GameSpace />
-    </div>
-  )
+  componentDidMount(evt) {
+    // evt.preventDefault()
+    console.log('App componentDidMount')
+    getLevles()
+      .then(leveles => {
+        this.setState({
+          level: leveles
+        })
+      })
+  }
+  render() {
+    return (
+      <div className="mainapp" style={{ position: "absolute" }}>
+        <h1>React development has begun!</h1>
+
+        <p id="redBox" style={{ position: "absolute", top: "100px", left: "400px", background: 'red', width: "100px", height: "100px" }} draggable="true" onDragEnd={dropped} onMouseMove={mouseMove} onDrop={dragDrop} onDrag={aFunction}>a</p>
+
+        <GameSpace />
+      </div>
+    )
+  }
 }
 
 
