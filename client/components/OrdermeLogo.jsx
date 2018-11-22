@@ -1,7 +1,7 @@
 import React from 'react'
 
 const OrdermeLogo = props => (
-    <svg viewBox="0 0 247.03 165.15" {...props}>
+    <svg className="logo" viewBox="0 0 247.03 165.15" {...props}>
         <defs>
             <style>
                 {

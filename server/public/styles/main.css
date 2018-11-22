@@ -1,0 +1,18 @@
+.mainapp{
+  width: 100%;
+}
+
+.gamespace{
+  height: 80vh;
+  width: 100%;
+}
+
+.logo{
+  height: 200px;
+  width: 200px;
+}
+
+.letterBlock{
+  width:100px;
+  height:100px;
+}

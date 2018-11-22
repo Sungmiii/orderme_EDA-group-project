@@ -11,6 +11,8 @@ class App extends React.Component {
     }
   }
 
+
+
   componentDidMount(evt) {
     // evt.preventDefault()
     console.log('App componentDidMount')
@@ -35,31 +37,8 @@ class App extends React.Component {
 }
 
 
-var xpos = Math.floor(Math.random() * 500);
 
-var ypos = Math.floor(Math.random() * 500);
 
-function aFunction(event) {
-  // console.log(event.clientX)
-  ypos = event.clientX;
-  xpos = event.clientY;
-}
-
-function dropped(event) {
-  console.log("dropped at x" + xpos + " y" + ypos)
-
-  document.getElementById("redBox").style["left"] = event.clientX + "px";
-  document.getElementById("redBox").style["top"] = event.clientY + "px";
-}
-
-function mouseMove(event) {
-  // console.log("mouse move ", event.clientX)
-
-}
-
-function dragDrop(event) {
-  // console.log('dragDrop', event.clientX)
-}
 
 export default App
 
