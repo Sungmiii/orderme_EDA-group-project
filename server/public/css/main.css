@@ -15,3 +15,7 @@ body{
 .maingame{
    grid-column: col 4/ span 6;
 }
+
+.menubtn,.resetbtn {
+    width: 250px;
+}

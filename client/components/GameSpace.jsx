@@ -7,7 +7,7 @@ export default function GameSpace() {
     return (
         <div className="maingame">
             <Header />
-            <Letter class="letterBlock" />
+            <Letter className="letterBlock" />
             <Footer />
         </div>
     )

@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-const reducers = combineReducers({
+import reset from './resetReducer'
 
+const reducers = combineReducers({
+    reset
 })
 
 export default reducers
