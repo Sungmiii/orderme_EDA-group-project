@@ -5,7 +5,7 @@ import Letter from './alphabet/A'
 
 export default function GameSpace() {
     return (
-        <div className="gamespace">
+        <div className="maingame">
             <Header />
             <Letter class="letterBlock" />
             <Footer />
