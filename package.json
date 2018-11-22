@@ -6,6 +6,9 @@
   "main": "server/index.js",
   "author": "EDA",
   "license": "ISC",
+  "engines": {
+    "node": "8.10.0"
+  },
   "scripts": {
     "start": "webpack && node server",
     "dev": "nodemon server & webpack --watch",
