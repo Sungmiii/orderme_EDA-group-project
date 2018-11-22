@@ -18352,12 +18352,7 @@ var App = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { style: { position: "absolute" }, className: 'gridcontainer' },
-        _react2.default.createElement(
-          'h1',
-          null,
-          'React development has begun!'
-        ),
+        { className: 'gridcontainer' },
         _react2.default.createElement(_GameSpace2.default, null)
       );
     }
@@ -18662,9 +18657,9 @@ function Footer() {
         'div',
         null,
         _react2.default.createElement(
-            'h1',
+            'p',
             null,
-            'this is footer'
+            '\xA9 Team A: Orderme by Kelly Taz Sungmi James'
         )
     );
 }
