@@ -1,3 +1,24 @@
+
+
+body{
+  background-image: url('../img/bgorderme.gif');
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gridcontainer{
+  display: grid;
+  grid-template-columns: repeat(12, [col] 1fr);
+  grid-template-rows: auto;
+  justify-content: center;
+}
+
+.maingame{
+ grid-column: col 4/ span 6;
+}
+
+
 .mainapp{
   width: 100%;
 }
