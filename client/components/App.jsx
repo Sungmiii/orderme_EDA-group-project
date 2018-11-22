@@ -21,16 +21,17 @@ class App extends React.Component {
     getLevles()
       .then(leveles => {
         this.setState({
-          level: leveles
+          level: leveles.game
         })
       })
   }
+
   render() {
     return (
       <div style={{ position: "absolute" }} className="gridcontainer">
 
         <Header />
-        <GameSpace />
+        <GameSpace blocks={this.state.level} />
         <Footer />
       </div>
     )

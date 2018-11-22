@@ -46,7 +46,7 @@ function aFunction(e) {
 
 const LetterItem = props => {
 
-  let item = getElement[props.letter]
+  let item = getElement[props.letter.toUpperCase()]
   if (item) {
     return (
       <div className="draggableBox" draggable="true" onDrag={aFunction}>
