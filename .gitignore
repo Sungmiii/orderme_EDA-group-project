@@ -61,4 +61,4 @@ typings/
 .next
 
 
-sever/public/bundle.js*
+server/public/bundle.js*
