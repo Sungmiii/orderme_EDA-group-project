@@ -18281,22 +18281,27 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _GameSpace = __webpack_require__(28);
+
+var _GameSpace2 = _interopRequireDefault(_GameSpace);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
   return _react2.default.createElement(
-    "div",
+    'div',
     { style: { position: "absolute" } },
     _react2.default.createElement(
-      "h1",
+      'h1',
       null,
-      "React development has begun!"
+      'React development has begun!'
     ),
     _react2.default.createElement(
-      "p",
-      { id: "redBox", style: { position: "absolute", top: "100px", left: "400px", background: 'red', width: "100px", height: "100px" }, draggable: "true", onDragEnd: dropped, onMouseMove: mouseMove, onDrop: dragDrop, onDrag: aFunction },
-      "a"
-    )
+      'p',
+      { id: 'redBox', style: { position: "absolute", top: "100px", left: "400px", background: 'red', width: "100px", height: "100px" }, draggable: 'true', onDragEnd: dropped, onMouseMove: mouseMove, onDrop: dragDrop, onDrag: aFunction },
+      'a'
+    ),
+    _react2.default.createElement(_GameSpace2.default, null)
   );
 };
 
@@ -18327,6 +18332,101 @@ function dragDrop(event) {
 }
 
 exports.default = App;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = GameSpace;
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Header = __webpack_require__(29);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Footer = __webpack_require__(30);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function GameSpace() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_Header2.default, null),
+        _react2.default.createElement(_Footer2.default, null)
+    );
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Header;
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'h1',
+            null,
+            'Order me'
+        )
+    );
+}
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Footer;
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Footer() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'h1',
+            null,
+            'this is footer'
+        )
+    );
+}
 
 /***/ })
 /******/ ]);
