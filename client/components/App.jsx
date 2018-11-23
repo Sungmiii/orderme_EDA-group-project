@@ -10,6 +10,7 @@ import GameSpace from './GameSpace'
 import Header from './Header'
 import Footer from './Footer'
 import AnswerBox from './AnswerBox'
+import Letter from './alphabet/LetterItem'
 
 class App extends React.Component {
   constructor(props) {
@@ -88,7 +89,7 @@ class App extends React.Component {
 
 
       // let thing = (this.props.goal[i] > -1) ? (this.state.level[this.props.goal[i]]) : null;
-      let thing = this.state.level[this.props.goal[i]];
+      let thing = this.state.level[this.props.goal[i] - 1];
 
       if (thing == undefined) {
         thing = null;
@@ -96,13 +97,12 @@ class App extends React.Component {
       else {
         thing = thing.value
       }
-      // console.log("thing is ", thing, this.state.level[i], this.props.goal[i])
+      console.log("thing is ", thing, this.state.level[i], this.props.goal[i])
 
       // console.log("is " + i)
       return (
         <span onDragOver={this.dragOver} onDrop={(e) => this.drop(e, i)}>
-          <AnswerBox />
-          <span>{thing}</span>
+          {thing ? <div style={{ display: "inline-block" }}>< Letter hide={false} letter={thing} /> </div> : <AnswerBox />}
         </span>
       )
 
