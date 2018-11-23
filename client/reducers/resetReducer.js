@@ -1,13 +1,16 @@
-/* import { RESET_GAME } from '../actions'
+import { RESET_GAME, GAME_HAS_RESET } from '../actions'
 
 
 
-function resetRedcuer(state = ['a', 'b'], action) {
+function resetRedcuer(state = false, action) {
     switch (action.type) {
         case RESET_GAME:
-            console.log('reset reducer', state)
+            return true
+        case GAME_HAS_RESET:
+            return false
+        default:
             return state
     }
 }
 
-export default resetRedcuer  */
+export default resetRedcuer 

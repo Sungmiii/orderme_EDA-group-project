@@ -42,7 +42,7 @@ const getElement = {
 
 function dropped(e, letter) {
   e.preventDefault();
-  console.log("item dropped on " + letter + " is " + e.dataTransfer.getData("id"))
+  //console.log("item dropped on " + letter + " is " + e.dataTransfer.getData("id"))
 }
 
 function dragOver(e) {

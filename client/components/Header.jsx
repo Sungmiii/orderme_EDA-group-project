@@ -1,21 +1,33 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
+import { resetGame } from '../actions/index'
+
 import OrdermeLogo from './OrdermeLogo'
 import MenuBtn from './MenuBtn'
 import ResetBtn from './ResetBtn'
 
-export default function Header() {
+function Header(props) {
     return (
         <header>
             <div className="menubtn">
                 <MenuBtn />
             </div>
             <div className="logogog">
-            <OrdermeLogo />
+                <OrdermeLogo />
             </div>
-            <div className="resetbtn">
+            <div className="resetbtn" onClick={() => gameReset(props.dispatch)}>
                 <ResetBtn />
             </div>
         </header>
     )
 }
+
+function gameReset(dispatch) {
+    console.log("reset clicked")
+    dispatch(resetGame())
+}
+
+
+export default connect()(Header)

@@ -1,6 +1,10 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 import { getLevles } from './api_client/orderme_api'
+
+import { resetComplete, clearGoals, dropItem } from '../actions'
 
 import GameSpace from './GameSpace'
 import Header from './Header'
@@ -11,8 +15,12 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      level: []
+      level: [],
+      resetGame: false,
+      goal: []
     }
+
+    this.resetGame = this.resetGame.bind(this)
   }
 
   componentDidMount(evt) {
@@ -20,10 +28,55 @@ class App extends React.Component {
     console.log('App componentDidMount')
     getLevles()
       .then(leveles => {
+        let goal = Array(leveles.game.length)
+        goal = goal.fill(-1)
         this.setState({
-          level: leveles.game
+          level: leveles.game,
+          goal: goal
         })
       })
+    this.drop = this.drop.bind(this)
+    this.dragOver = this.dragOver.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+
+    if (nextProps.resetGame) {
+      let goal = Array(this.state.goal.length)
+      goal = goal.fill(-1)
+
+      this.props.dispatch(clearGoals(goal))
+
+      this.setState({ goal: goal })
+
+      this.resetGame();
+    }
+
+  }
+
+  resetGame() {
+    this.props.dispatch(resetComplete())
+  }
+
+  drop(e, target) {
+    e.preventDefault();
+    // console.log(name + " got given " + e.dataTransfer.getData("id"))
+
+    let dropped = this.state.level.find(
+      (item) => {
+        console.log("tiem is ", item)
+        return item.value == e.dataTransfer.getData("id")
+      }
+    )
+
+    console.log("dropped is", dropped)
+
+    this.props.dispatch(dropItem(target, dropped.id))
+  }
+
+  dragOver(e) {
+    e.preventDefault()
   }
 
   render() {
@@ -32,10 +85,24 @@ class App extends React.Component {
     answers = answers.fill(1);
 
     answers = answers.map((item, i) => {
-      console.log("is " + i)
+
+
+      // let thing = (this.props.goal[i] > -1) ? (this.state.level[this.props.goal[i]]) : null;
+      let thing = this.state.level[this.props.goal[i]];
+
+      if (thing == undefined) {
+        thing = null;
+      }
+      else {
+        thing = thing.value
+      }
+      console.log("thing is ", thing, this.state.level[i], this.props.goal[i])
+
+      // console.log("is " + i)
       return (
-        <span  onDragOver={dragOver} onDrop={(e) => drop(e, "Box" + i)}>
+        <span onDragOver={this.dragOver} onDrop={(e) => this.drop(e, i)}>
           <AnswerBox />
+          <span>{thing}</span>
         </span>
       )
 
@@ -55,16 +122,13 @@ class App extends React.Component {
   }
 }
 
-function drop(e, name) {
-  e.preventDefault();
-  console.log(name + " got given " + e.dataTransfer.getData("id"))
+
+function mapStateToProps(state) {
+  return {
+    resetGame: state.reset,
+    goal: state.goals
+  }
 }
 
-function dragOver(e) {
-  e.preventDefault()
-}
-
-
-
-export default App
+export default connect(mapStateToProps)(App)
 
