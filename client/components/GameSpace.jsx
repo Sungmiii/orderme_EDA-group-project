@@ -1,14 +1,18 @@
 import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import Letter from './alphabet/A'
+import Letter from './alphabet/LetterItem'
 
-export default function GameSpace() {
+export default function GameSpace(props) {
+
+
+    // let blocks = ["A", "ASDASdasdasd", "C", "D", "E"]
+    //let blocks = props.blocks.map((item) => item.value);
+
+    let letterComponents = props.blocks.map((item, i) => < Letter key={i} hide={item.hide} letter={item.value} />)
+
+
     return (
         <div className="maingame">
-            <Header />
-            <Letter class="letterBlock" />
-            <Footer />
+            {letterComponents}
         </div>
     )
 }

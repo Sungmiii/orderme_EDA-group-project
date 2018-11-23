@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from './Header'
+import Footer from './Footer'
 
 import GameSpace from './GameSpace'
 import { getLevles } from './api_client/orderme_api'
@@ -19,18 +21,18 @@ class App extends React.Component {
     getLevles()
       .then(leveles => {
         this.setState({
-          level: leveles
+          level: leveles.game
         })
       })
   }
+
   render() {
     return (
       <div style={{ position: "absolute" }} className="gridcontainer">
-        <h1>React development has begun!</h1>
 
-        <p id="redBox" style={{ position: "absolute", top: "100px", left: "400px", background: 'red', width: "100px", height: "100px" }} draggable="true" onDragEnd={dropped} onMouseMove={mouseMove} onDrop={dragDrop} onDrag={aFunction}>a</p>
-
-        <GameSpace />
+        <Header />
+        <GameSpace blocks={this.state.level} />
+        <Footer />
       </div>
     )
   }
