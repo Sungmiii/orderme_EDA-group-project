@@ -39,19 +39,30 @@ const getElement = {
 }
 
 
-function aFunction(e) {
-  console.log("item dragged")
+
+function dropped(e, letter) {
+  e.preventDefault();
+  console.log("item dropped on " + letter + " is " + e.dataTransfer.getData("id"))
 }
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function dragStart(e, letter) {
+  e.dataTransfer.setData("id", letter)
+}
+
 
 
 const LetterItem = props => {
 
   let item = getElement[props.letter.toUpperCase()]
-  if (item) {
+  if (item && !props.hide) {
     return (
-      <div className="draggableBox" draggable="true" onDrag={aFunction}>
+      <div className="draggableBox" draggable="true" onDrop={(e) => dropped(e, props.letter)} onDragOver={dragOver} onDragStart={(e) => dragStart(e, props.letter)}>
         {item}
-      </div>
+      </div >
     )
   }
   else {
