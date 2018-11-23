@@ -96,7 +96,7 @@ class App extends React.Component {
       else {
         thing = thing.value
       }
-      console.log("thing is ", thing, this.state.level[i], this.props.goal[i])
+      // console.log("thing is ", thing, this.state.level[i], this.props.goal[i])
 
       // console.log("is " + i)
       return (
