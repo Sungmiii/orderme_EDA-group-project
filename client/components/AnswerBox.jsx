@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AnswerBox = props => (
-    <svg viewBox="0 0 181.01 178.01" {...props}>
+    <svg className="asbox" viewBox="0 0 181.01 178.01" {...props}>
         <defs>
             <style>{'.prefix__cls-6{fill:#fce600}.prefix__cls-8{fill:#fc0}'}</style>
         </defs>

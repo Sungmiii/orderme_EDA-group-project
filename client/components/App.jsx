@@ -1,9 +1,11 @@
 import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
+
+import { getLevles } from './api_client/orderme_api'
 
 import GameSpace from './GameSpace'
-import { getLevles } from './api_client/orderme_api'
+import Header from './Header'
+import Footer from './Footer'
+import AnswerBox from './AnswerBox'
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +30,11 @@ class App extends React.Component {
     return (
       <div className="gridcontainer">
         <Header />
+        <div className="answerbox">
+        <AnswerBox />
+        <AnswerBox />
+        <AnswerBox />
+        </div>
         <GameSpace blocks={this.state.level} />
         <Footer />
       </div>

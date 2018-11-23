@@ -18306,6 +18306,12 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _orderme_api = __webpack_require__(34);
+
+var _GameSpace = __webpack_require__(28);
+
+var _GameSpace2 = _interopRequireDefault(_GameSpace);
+
 var _Header = __webpack_require__(29);
 
 var _Header2 = _interopRequireDefault(_Header);
@@ -18314,11 +18320,9 @@ var _Footer = __webpack_require__(32);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _GameSpace = __webpack_require__(28);
+var _AnswerBox = __webpack_require__(108);
 
-var _GameSpace2 = _interopRequireDefault(_GameSpace);
-
-var _orderme_api = __webpack_require__(34);
+var _AnswerBox2 = _interopRequireDefault(_AnswerBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18351,7 +18355,7 @@ var App = function (_React$Component) {
       console.log('App componentDidMount');
       (0, _orderme_api.getLevles)().then(function (leveles) {
         _this2.setState({
-          level: leveles
+          level: leveles.game
         });
       });
     }
@@ -18362,7 +18366,14 @@ var App = function (_React$Component) {
         'div',
         { className: 'gridcontainer' },
         _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(_GameSpace2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'answerbox' },
+          _react2.default.createElement(_AnswerBox2.default, null),
+          _react2.default.createElement(_AnswerBox2.default, null),
+          _react2.default.createElement(_AnswerBox2.default, null)
+        ),
+        _react2.default.createElement(_GameSpace2.default, { blocks: this.state.level }),
         _react2.default.createElement(_Footer2.default, null)
       );
     }
@@ -18395,18 +18406,21 @@ var _LetterItem2 = _interopRequireDefault(_LetterItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function GameSpace() {
+function GameSpace(props) {
 
-    var blocks = ["A", "ASDASdasdasd", "C", "D", "E"];
+    // let blocks = ["A", "ASDASdasdasd", "C", "D", "E"]
+    var blocks = props.blocks.map(function (item) {
+        return item.value;
+    });
 
-    var items = blocks.map(function (item, i) {
+    var letterComponents = blocks.map(function (item, i) {
         return _react2.default.createElement(_LetterItem2.default, { key: i, letter: item });
     });
 
     return _react2.default.createElement(
         'div',
         { className: 'maingame' },
-        items
+        letterComponents
     );
 }
 
@@ -18491,7 +18505,7 @@ var OrdermeLogo = function OrdermeLogo(props) {
             _react2.default.createElement(
                 "style",
                 null,
-                '.prefix__cls-1{fill:none}.logod{fill:#84c500 !important}.logoe{fill:#f7007e !important}.prefix__cls-4{fill:#009ede}.prefix__cls-6{fill:#fff}.prefix__cls-7{fill:#00a99d}'
+                '.prefix__cls-1{fill:none}.logod{fill:#84c500 !important}.logoe{fill:#f7007e !important}.prefix__cls-4{fill:#009ede}.logoeye{fill:#fff}.prefix__cls-7{fill:#00a99d}'
             )
         ),
         _react2.default.createElement(
@@ -18543,7 +18557,7 @@ var OrdermeLogo = function OrdermeLogo(props) {
                 }),
                 _react2.default.createElement("path", { d: "M227.76 44.41a2.61 2.61 0 0 1-2.28 0 2.62 2.62 0 0 1-3.77 1.79 2.61 2.61 0 0 1-1.41 1.9 2.68 2.68 0 0 1-3.43-1 10.1 10.1 0 0 0 4.41 4.5 2.62 2.62 0 0 1 1.45-2.19 2.68 2.68 0 0 1 3.59 1.24 2.91 2.91 0 0 1 .22.6c4.94-3.45 3.86-7.75 2.45-10.4a2.68 2.68 0 0 1-1.23 3.56zM216.65 46.78z" }),
                 _react2.default.createElement("path", {
-                    className: "prefix__cls-6",
+                    className: "logoeye",
                     d: "M220.3 48.13a2.61 2.61 0 0 0 1.41-1.9 2.62 2.62 0 0 0 3.77-1.79 2.61 2.61 0 0 0 2.28 0 2.68 2.68 0 0 0 1.24-3.51l-.07-.14a2.88 2.88 0 0 0-.22-.38 2.73 2.73 0 0 0-1.57-1.06 8.56 8.56 0 0 1-1.79 3.49 9.66 9.66 0 0 1-.83.86 11 11 0 0 1-2.77 1.79l-.68.29a15 15 0 0 1-4.4 1 .21.21 0 0 0 0 .07l.16.29a2.68 2.68 0 0 0 3.47.99zM222.73 49.49a2.62 2.62 0 0 0-1.45 2.19 5.55 5.55 0 0 0 5-.16l.29-.19a2.91 2.91 0 0 0-.22-.6 2.68 2.68 0 0 0-3.62-1.24zM15.45 23.36a5.38 5.38 0 1 0 6.62-3.76 5.37 5.37 0 0 0-6.62 3.76zm8.82 2.43a3.77 3.77 0 1 1-7.26-2 3.52 3.52 0 0 1 .39-.91 1.58 1.58 0 0 0 .68 1.1 1.54 1.54 0 0 0 .48.24 1.62 1.62 0 0 0 2-2.11 1.65 1.65 0 0 0-.91-.94 3.82 3.82 0 0 1 2 0 3.77 3.77 0 0 1 2.62 4.62z"
                 }),
                 _react2.default.createElement("path", {
@@ -18552,7 +18566,7 @@ var OrdermeLogo = function OrdermeLogo(props) {
                 }),
                 _react2.default.createElement("path", { d: "M19.92 27.38a2.69 2.69 0 1 0 .59-5.27 1.62 1.62 0 0 1-2 2.11 1.54 1.54 0 0 1-.48-.24v.09a2.7 2.7 0 0 0 1.89 3.31z" }),
                 _react2.default.createElement("path", {
-                    className: "prefix__cls-6",
+                    className: "logoeye",
                     d: "M212.66 23.18a5.38 5.38 0 1 0 5.34 5.37 5.37 5.37 0 0 0-5.34-5.37zm0 9.14a3.77 3.77 0 0 1 0-7.53 3.93 3.93 0 0 1 1 .13 1.65 1.65 0 0 0-.88.95 1.61 1.61 0 0 0-.1.53 1.63 1.63 0 0 0 1.6 1.6 1.69 1.69 0 0 0 .93-.3 1.6 1.6 0 0 0 .66-1.13 3.76 3.76 0 0 1-3.21 5.73z"
                 }),
                 _react2.default.createElement("path", {
@@ -18561,7 +18575,7 @@ var OrdermeLogo = function OrdermeLogo(props) {
                 }),
                 _react2.default.createElement("path", { d: "M210 28.55a2.69 2.69 0 1 0 5.38 0 2.83 2.83 0 0 0-.14-.83 1.69 1.69 0 0 1-.93.3 1.63 1.63 0 0 1-1.62-1.62 1.61 1.61 0 0 1 .1-.53h-.1a2.69 2.69 0 0 0-2.69 2.68z" }),
                 _react2.default.createElement("path", {
-                    className: "prefix__cls-6",
+                    className: "logoeye",
                     d: "M224 26.4a4.31 4.31 0 1 0 4.3 4.31 4.3 4.3 0 0 0-4.3-4.31zm0 7.32a3 3 0 0 1 0-6 2.88 2.88 0 0 1 .78.11A1.34 1.34 0 0 0 224 29a1.3 1.3 0 0 0 1.29 1.3 1.26 1.26 0 0 0 .71-.3 1.33 1.33 0 0 0 .54-.9 3 3 0 0 1 .44 1.57 3 3 0 0 1-2.98 3.05z"
                 }),
                 _react2.default.createElement("path", {
@@ -18570,7 +18584,7 @@ var OrdermeLogo = function OrdermeLogo(props) {
                 }),
                 _react2.default.createElement("path", { d: "M221.81 30.71a2.15 2.15 0 0 0 4.3 0A2.09 2.09 0 0 0 226 30a1.26 1.26 0 0 1-.74.24A1.3 1.3 0 0 1 224 29a1.25 1.25 0 0 1 .08-.42H224a2.16 2.16 0 0 0-2.19 2.13zM37.26 52.42l.61 2.09a1.42 1.42 0 1 1-2.73.8l-.59-2-1.37.39.59 2a1.42 1.42 0 1 1-2.77.8l-.62-2.11c-1.33.36-2.67.73-4 1.15 1.71 3 5.68 5.72 9.31 5s4.83-6 4.35-9.24q-1.35.64-2.78 1.12z" }),
                 _react2.default.createElement("path", {
-                    className: "prefix__cls-6",
+                    className: "logoeye",
                     d: "M32.8 57.47a1.42 1.42 0 0 0 1-1.76l-.59-2-2.76.72.55 2.07a1.42 1.42 0 0 0 1.8.97zM36.9 56.28a1.42 1.42 0 0 0 1-1.77l-.61-2.09c-.9.32-1.8.6-2.71.86l.59 2a1.43 1.43 0 0 0 1.73 1z"
                 })
             )
@@ -24167,7 +24181,7 @@ function aFunction(e) {
 
 var LetterItem = function LetterItem(props) {
 
-  var item = getElement[props.letter];
+  var item = getElement[props.letter.toUpperCase()];
   if (item) {
     return _react2.default.createElement(
       'div',
@@ -25558,6 +25572,85 @@ var Z = function Z(props) {
 };
 
 exports.default = Z;
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var AnswerBox = function AnswerBox(props) {
+    return _react2.default.createElement(
+        "svg",
+        _extends({ className: "asbox", viewBox: "0 0 181.01 178.01" }, props),
+        _react2.default.createElement(
+            "defs",
+            null,
+            _react2.default.createElement(
+                "style",
+                null,
+                '.prefix__cls-6{fill:#fce600}.prefix__cls-8{fill:#fc0}'
+            )
+        ),
+        _react2.default.createElement(
+            "title",
+            null,
+            'answerbox'
+        ),
+        _react2.default.createElement(
+            "g",
+            { id: "prefix__\\uB808\\uC774\\uC5B4_2", "data-name": "\\uB808\\uC774\\uC5B4 2" },
+            _react2.default.createElement(
+                "g",
+                { id: "prefix__\\uB808\\uC774\\uC5B4_1-2", "data-name": "\\uB808\\uC774\\uC5B4 1" },
+                _react2.default.createElement("path", {
+                    fill: "#f5b700",
+                    d: "M6.01 171.44H6V6.56L.2 1H0v176.41h.01v-.22l6-5.75z"
+                }),
+                _react2.default.createElement("path", {
+                    fill: "#debe14",
+                    d: "M174.01 171.44h-168l-6 5.75v.82H181v-.6h-1.12l-5.87-5.97z"
+                }),
+                _react2.default.createElement("path", {
+                    fill: "#faf891",
+                    d: "M6 5.67h169v.62L180.19 1h.81V0H.01v.81L.2 1 6 6.56v-.89z"
+                }),
+                _react2.default.createElement("path", {
+                    fill: "#dbf565",
+                    d: "M181 1h-.81L175 6.29v165.15h-.99l5.87 5.97H181.01V1H181z"
+                }),
+                _react2.default.createElement("path", {
+                    d: "M173.78 5.66H6v165.78h169V5.66zm-22.39 23.28v120.19h-121V28.05h121z",
+                    fill: "#ffec00"
+                }),
+                _react2.default.createElement("path", {
+                    className: "prefix__cls-6",
+                    d: "M35.9 34.88l-5.51-6.18v119.8l5.51-6.19V34.88zM35.89 143.55h110v.08h-110zM145.9 142.06l5.5 6.19V28.95l-5.5 6.18v106.93z"
+                }),
+                _react2.default.createElement("path", { fill: "#fff", d: "M35.9 143.56h110V33.55h-110v110.01z" }),
+                _react2.default.createElement("path", {
+                    className: "prefix__cls-8",
+                    d: "M30.39 28.7l5.51 6.18v-1.33h110v1.58l5.5-6.18v-.9H30.39v.65zM145.9 143.56v.07h-110v-1.32l-5.51 6.19V149.13H151.4V148.25l-5.5-6.19v1.5z"
+                })
+            )
+        )
+    );
+};
+
+exports.default = AnswerBox;
 
 /***/ })
 /******/ ]);
