@@ -18362,6 +18362,21 @@ var App = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var answers = new Array(26);
+
+      answers = answers.fill(1);
+
+      answers = answers.map(function (item, i) {
+        console.log("is " + i);
+        return _react2.default.createElement(
+          'span',
+          { onDragOver: dragOver, onDrop: function onDrop(e) {
+              return drop(e, "Box" + i);
+            } },
+          _react2.default.createElement(_AnswerBox2.default, null)
+        );
+      });
+
       return _react2.default.createElement(
         'div',
         { className: 'gridcontainer' },
@@ -18369,9 +18384,7 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'answerbox' },
-          _react2.default.createElement(_AnswerBox2.default, null),
-          _react2.default.createElement(_AnswerBox2.default, null),
-          _react2.default.createElement(_AnswerBox2.default, null)
+          answers
         ),
         _react2.default.createElement(_GameSpace2.default, { blocks: this.state.level }),
         _react2.default.createElement(_Footer2.default, null)
@@ -18381,6 +18394,15 @@ var App = function (_React$Component) {
 
   return App;
 }(_react2.default.Component);
+
+function drop(e, name) {
+  e.preventDefault();
+  console.log(name + " got given " + e.dataTransfer.getData("id"));
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
 
 exports.default = App;
 
@@ -18409,13 +18431,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function GameSpace(props) {
 
     // let blocks = ["A", "ASDASdasdasd", "C", "D", "E"]
-    var blocks = props.blocks.map(function (item) {
-        return item.value;
+    //let blocks = props.blocks.map((item) => item.value);
+
+    var letterComponents = props.blocks.map(function (item, i) {
+        return _react2.default.createElement(_LetterItem2.default, { key: i, hide: item.hide, letter: item.value });
     });
 
-    var letterComponents = blocks.map(function (item, i) {
-        return _react2.default.createElement(_LetterItem2.default, { key: i, letter: item });
-    });
+    for (var i = 0; i < letterComponents.length; i++) {
+
+        var swapNum = Math.floor(Math.random() * (letterComponents.length - i) + i);
+        var temp = letterComponents[swapNum];
+
+        letterComponents[swapNum] = letterComponents[i];
+        letterComponents[i] = temp;
+    }
 
     return _react2.default.createElement(
         'div',
@@ -24175,17 +24204,30 @@ var getElement = {
   Y: _react2.default.createElement(_Y2.default, { className: 'letterBlock' }), Z: _react2.default.createElement(_Z2.default, { className: 'letterBlock' })
 };
 
-function aFunction(e) {
-  console.log("item dragged");
+function dropped(e, letter) {
+  e.preventDefault();
+  console.log("item dropped on " + letter + " is " + e.dataTransfer.getData("id"));
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function dragStart(e, letter) {
+  e.dataTransfer.setData("id", letter);
 }
 
 var LetterItem = function LetterItem(props) {
 
   var item = getElement[props.letter.toUpperCase()];
-  if (item) {
+  if (item && !props.hide) {
     return _react2.default.createElement(
       'div',
-      { className: 'draggableBox', draggable: 'true', onDrag: aFunction },
+      { className: 'draggableBox', draggable: 'true', onDrop: function onDrop(e) {
+          return dropped(e, props.letter);
+        }, onDragOver: dragOver, onDragStart: function onDragStart(e) {
+          return dragStart(e, props.letter);
+        } },
       item
     );
   } else {
